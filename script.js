@@ -12,16 +12,20 @@ function reveal() {
     });
 }
 
-function limitWords(field, maxWords) {
+function limitWordsAndChars(field, maxWords, maxChars) {
     const words = field.value.trim().split(/\s+/).filter(w => w.length > 0);
     const wordCount = words.length;
+    const charCount = field.value.length;
     const counter = field.nextElementSibling;
-    counter.textContent = wordCount + ' / ' + maxWords + ' words';
+    counter.textContent = wordCount + ' / ' + maxWords + ' words, ' + charCount + ' / ' + maxChars + ' characters';
 
     if (wordCount >= maxWords) {
         counter.style.color = '#ff4a4a';
         const trimmed = words.slice(0, maxWords).join(' ');
         field.value = trimmed;
+    } else if (charCount >= maxChars - 50) {
+        // Warning when approaching character limit
+        counter.style.color = '#ffa500';
     } else {
         counter.style.color = 'var(--text-tertiary)';
     }
