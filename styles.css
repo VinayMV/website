@@ -1140,3 +1140,95 @@ a.logo:hover {
         padding: 2rem 0;
     }
 }
+/* Mobile nav toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-toggle:focus-visible,
+.nav-links a:focus-visible,
+.skip-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (max-width: 960px) {
+    nav { padding: 1rem 0; }
+
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10, 10, 10, 0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 2rem 1rem;
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links a {
+        display: block;
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+}
+
+/* Highlights strip */
+.highlights {
+    padding: 0 0 3rem;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.highlight-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+}
+
+.highlight-item strong {
+    display: block;
+    font-family: 'Inconsolata', monospace;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.highlight-item span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
